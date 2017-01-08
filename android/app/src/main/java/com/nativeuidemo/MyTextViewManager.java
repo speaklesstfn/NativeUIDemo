@@ -1,10 +1,15 @@
 package com.nativeuidemo;
 
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
+import com.facebook.react.uimanager.events.RCTEventEmitter;
 
 import android.graphics.Color;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
 
 /**
@@ -20,9 +25,26 @@ public class MyTextViewManager extends SimpleViewManager<TextView> {
     }
 
     @Override
-    protected TextView createViewInstance(ThemedReactContext reactContext) {
-        TextView tv = new TextView(reactContext);
-        return tv;
+    protected TextView createViewInstance(final ThemedReactContext reactContext) {
+        final TextView textView = new TextView(reactContext);
+        //注册原生事件
+        textView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    WritableMap nativeEvent = Arguments.createMap();
+                    nativeEvent.putString("msg", "MyMsg");
+
+                    //topChange是定义在UIManagerModuleConstants.java里（com.facebook.react.uimanager包），会自动绑定JS端的onChange事件
+                    reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(textView.getId(), "topChange", nativeEvent);
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+
+        return textView;
     }
 
     @ReactProp(name = "text")
