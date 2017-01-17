@@ -8,39 +8,30 @@ import React, {Component} from 'react';
 import {
     AppRegistry,
     StyleSheet,
-    Text,
     View
 } from 'react-native';
 
 import MyTextView from './js/MyTextView';
 
-export default class NativeUIDemo extends Component {
 
-    // constructor(props) {
-    //     super(props);
-    // }
+export default class NativeUIDemo extends Component {
 
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>
-                    Welcome to React Native!
-                </Text>
-                <Text style={styles.instructions}>
-                    To get started, edit index.android.js
-                </Text>
-                <MyTextView style={styles.myTextView}
-                            text={'cesc=cdfsdfsiy'}
-                            textSize={18}
-                            isAlaph={true}
-                            onChangeMessage={this.onTextViewPressed}
+                <MyTextView
+                    style={styles.myTextView}
+                    text={'这是来自于原生的TextView'}
+                    textSize={18}
+                    isAlaph={true}
+                    onChangeMessage={this.onTextViewPressed}
                 />
             </View>
         );
     }
 
-    onTextViewPressed = () => {
-        alert('自定义UI组件被点击了！！！');
+    onTextViewPressed = (msg) => {
+        alert('自定义UI组件被点击了！！！' + msg);
     };
 }
 
@@ -51,19 +42,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
     },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
     myTextView: {
-        width: 300,
-        height: 100,
+        width: 250,
+        height: 25,
+        backgroundColor: 'darkgray',
     },
 });
 
