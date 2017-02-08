@@ -26,11 +26,11 @@ export default class MyTextView extends Component {
     }
 
     _onChange = (event: Event) => {
-        if(!this.props.onChangeMessage){
+        if (!this.props.onChangeMessage) {
             return;
         }
 
-        if(event.nativeEvent.msg === 'MyMsg') {
+        if (event.nativeEvent.msg === 'MyMsg') {
             this.props.onChangeMessage();
             return;
         }

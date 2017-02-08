@@ -8,6 +8,7 @@ import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 
 import android.graphics.Color;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -57,9 +58,9 @@ public class MyTextViewManager extends SimpleViewManager<TextView> {
         textView.setTextSize(fontSize);
     }
 
-    @ReactProp(name = "textColor", defaultInt = Color.BLACK)
-    public void setTextColor(TextView textView, int textColor) {
-        textView.setTextColor(textColor);
+    @ReactProp(name = "textColor")
+    public void setTextColor(TextView textView, String textColor) {
+        textView.setTextColor(Color.parseColor(textColor));
     }
 
     @ReactProp(name = "isAlpha", defaultBoolean = false)

@@ -10,7 +10,7 @@ myTextView = {
     propTypes: {
         text: PropTypes.string,
         textSize: PropTypes.number,
-        textColor: PropTypes.number,
+        textColor: PropTypes.string,
         isAlpha: PropTypes.bool,
         ...View.propTypes,//添加默认View的属性，否则会导致各种属性未定义错误
     },
