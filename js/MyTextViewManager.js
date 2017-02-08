@@ -5,7 +5,7 @@ import {PropTypes} from 'react';
 
 import {requireNativeComponent, View,} from 'react-native';
 
-myTextView = {
+let myTextView = {
     name: 'textView',
     propTypes: {
         text: PropTypes.string,
