@@ -26,14 +26,7 @@ export default class MyTextView extends Component {
             return;
         }
 
-<<<<<<< HEAD
-        if (event.nativeEvent.msg === 'MyMsg') {
-            this.props.onChangeMessage();
-            return;
-        }
-=======
         this.props.onChangeMessage(event.nativeEvent.msg);
->>>>>>> a07aaaffc19e81781f6c64e552667de1d846fe14
     };
 }
 
